@@ -12,4 +12,6 @@ class LoginBloc {
     var jsonObj = json.decode(response.body);
     return Login.fromJson(jsonObj);
   }
+
+  static login({required String email, required String password}) {}
 }
