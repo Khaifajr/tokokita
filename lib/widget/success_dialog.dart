@@ -8,10 +8,11 @@ class Consts {
 }
 
 class SuccessDialog extends StatelessWidget {
-  final String description;
-  final VoidCallback okClick;
+  final String? description;
+  final VoidCallback? okClick;
 
-  SuccessDialog({required this.description, required this.okClick});
+  const SuccessDialog({Key? key, this.description, this.okClick})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class SuccessDialog extends StatelessWidget {
           ),
           SizedBox(height: 16.0),
           Text(
-            description,
+            description!,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 16.0,
@@ -69,7 +70,7 @@ class SuccessDialog extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                okClick();
+                okClick!();
               },
               child: Text("OK"),
             ),

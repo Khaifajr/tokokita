@@ -4,6 +4,8 @@ import 'package:tokokita/widget/success_dialog.dart';
 import 'package:tokokita/widget/warning_dialog.dart';
 
 class RegistrasiPage extends StatefulWidget {
+  const RegistrasiPage({Key? key}) : super(key: key);
+
   @override
   _RegistrasiPageState createState() => _RegistrasiPageState();
 }
@@ -72,7 +74,7 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
         }
         //Validasi Email
         Pattern pattern =
-            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:s@\"]+)*)|(\".+\"))@((\[[0-9(1,3)\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z](2,}))$';
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
         RegExp regex = RegExp(pattern.toString());
         if (!regex.hasMatch(value)) {
           return "Email tidak valid";
@@ -88,7 +90,7 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
       decoration: InputDecoration(labelText: "Password"),
       keyboardType: TextInputType.text,
       obscureText: true,
-      controller: _emailTextboxController,
+      controller: _passwordTextboxController,
       validator: (value) {
         if (value!.length < 6) {
           return "Password harus diisi minimal 6 karakter";
@@ -102,7 +104,7 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
   Widget _passwordKonfirmasiTextField() {
     return TextFormField(
       decoration: InputDecoration(labelText: "Konfirmasi Password"),
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.text,
       obscureText: true,
       validator: (value) {
         if (value != _passwordTextboxController.text) {
@@ -116,11 +118,11 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
   //Membuat tombol registrasi
   Widget _buttonRegistrasi() {
     return ElevatedButton(
-        child: Text("Registrasi"),
+        child: const Text("Registrasi"),
         onPressed: () {
           var validate = _formkey.currentState!.validate();
           if (validate) {
-            if (_isLoading) _submit();
+            if (!_isLoading) _submit();
           }
         });
   }

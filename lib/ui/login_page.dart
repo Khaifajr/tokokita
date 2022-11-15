@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tokokita/bloc/login_bloc.dart';
 import 'package:tokokita/helpers/user_info.dart';
-import 'package:tokokita/model/login.dart';
 import 'package:tokokita/ui/produk_page.dart';
 import 'package:tokokita/ui/registrasi_page.dart';
 import 'package:tokokita/widget/warning_dialog.dart';
 
-import '../bloc/login_bloc.dart';
-
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -18,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formkey = GlobalKey<FormState>();
   bool _isLoading = false;
 
+  final _namaTextboxController = TextEditingController();
   final _emailTextboxController = TextEditingController();
   final _passwordTextboxController = TextEditingController();
 
@@ -90,9 +87,27 @@ class _LoginPageState extends State<LoginPage> {
         onPressed: () {
           var validate = _formkey.currentState!.validate();
           if (validate) {
-            if (_isLoading) _submit();
+            if (!_isLoading) _submit();
           }
         });
+  }
+
+  //Membuat menu untuk membuka halaman registrasi
+  Widget _menuRegistrasi() {
+    return Container(
+      child: Center(
+        child: InkWell(
+          child: Text(
+            "Registrasi",
+            style: TextStyle(color: Colors.blue),
+          ),
+          onTap: () {
+            Navigator.push(context,
+                new MaterialPageRoute(builder: (context) => RegistrasiPage()));
+          },
+        ),
+      ),
+    );
   }
 
   void _submit() {
@@ -104,17 +119,17 @@ class _LoginPageState extends State<LoginPage> {
             email: _emailTextboxController.text,
             password: _passwordTextboxController.text)
         .then((value) async {
-      await UserInfo().setToken(value.token);
-      await UserInfo().setUserID(value.userID);
+      await UserInfo().setToken(value.token.toString());
+      await UserInfo().setUserID(int.parse(value.userID.toString()));
       Navigator.pushReplacement(
-          context, new MaterialPageRoute(builder: (context) => ProdukPage()));
+          context, MaterialPageRoute(builder: (context) => const ProdukPage()));
     }, onError: (error) {
       print(error);
       showDialog(
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) => WarningDialog(
-                description: "Login gagal, silhakan coba lagi",
+                description: "Login gagal, silahkan coba lagi",
                 okClick: () {},
               ));
     });
@@ -122,6 +137,4 @@ class _LoginPageState extends State<LoginPage> {
       _isLoading = false;
     });
   }
-
-  _menuRegistrasi() {}
 }

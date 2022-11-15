@@ -10,9 +10,7 @@ class Login {
       required this.status,
       required this.token,
       required this.userID,
-      required this.userEmail}) {
-    throw UnimplementedError();
-  }
+      required this.userEmail});
 
   factory Login.fromJson(Map<String, dynamic> obj) {
     return Login(

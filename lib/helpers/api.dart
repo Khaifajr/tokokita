@@ -4,9 +4,10 @@ import 'package:tokokita/helpers/user_info.dart';
 import 'app_exception.dart';
 
 class Api {
-  Future<dynamic> post(dynamic url, dynamic data) async {
+  Future<dynamic> post(String url, dynamic data) async {
     var token = await UserInfo().getToken();
     var responseJson;
+    var uri = Uri.parse(url);
     try {
       final response = await http.post(Uri.parse(url),
           body: data,
@@ -21,8 +22,9 @@ class Api {
   Future<dynamic> get(dynamic url) async {
     var token = await UserInfo().getToken();
     var responseJson;
+    var uri = Uri.parse(url);
     try {
-      final response = await http.get(url,
+      final response = await http.get(uri,
           headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
       responseJson = _returnResponse(response);
     } on SocketException {
@@ -31,11 +33,12 @@ class Api {
     return responseJson;
   }
 
-  Future<dynamic> delete(dynamic url) async {
+  Future<dynamic> delete(String url) async {
     var token = await UserInfo().getToken();
     var responseJson;
+    var uri = Uri.parse(url);
     try {
-      final response = await http.delete(url,
+      final response = await http.delete(uri,
           headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
       responseJson = _returnResponse(response);
     } on SocketException {
