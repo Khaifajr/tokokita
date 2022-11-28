@@ -99,7 +99,7 @@ class ItemProduk extends StatelessWidget {
       },
       child: Card(
         child: ListTile(
-          title: Text(produk.namaProduk),
+          title: Text(produk.namaProduk!),
           subtitle: Text(produk.hargaProduk.toString()),
         ),
       ),

@@ -36,8 +36,8 @@ class _ProdukFormState extends State<ProdukForm> {
       setState(() {
         judul = "UBAH PRODUK";
         tombolSubmit = "UBAH";
-        _kodeProdukTextboxController.text = widget.produk.kodeProduk;
-        _namaProdukTextboxController.text = widget.produk.namaProduk;
+        _kodeProdukTextboxController.text = widget.produk.kodeProduk!;
+        _namaProdukTextboxController.text = widget.produk.namaProduk!;
         _hargaProdukTextboxController.text =
             widget.produk.hargaProduk.toString();
       });
@@ -139,7 +139,7 @@ class _ProdukFormState extends State<ProdukForm> {
     setState(() {
       _isLoading = true;
     });
-    Produk createProduk = new Produk();
+    Produk createProduk = Produk(hargaProduk: null);
     createProduk.kodeProduk = _kodeProdukTextboxController.text;
     createProduk.namaProduk = _namaProdukTextboxController.text;
     createProduk.hargaProduk = int.parse(_hargaProdukTextboxController.text);

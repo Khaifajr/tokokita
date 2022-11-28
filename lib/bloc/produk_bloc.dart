@@ -31,7 +31,7 @@ class ProdukBloc {
   }
 
   static Future<bool> updateProduk({required Produk produk}) async {
-    String apiUrl = ApiUrl.updateProduk(produk.id);
+    String apiUrl = ApiUrl.updateProduk(produk.id!);
 
     var body = {
       "kode_produk": produk.kodeProduk,
