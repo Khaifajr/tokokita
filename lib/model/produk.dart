@@ -4,11 +4,7 @@ class Produk {
   String namaProduk;
   int hargaProduk;
 
-  Produk(
-      {required this.id,
-      required this.kodeProduk,
-      required this.namaProduk,
-      required this.hargaProduk});
+  Produk({this.id, this.kodeProduk, this.namaProduk, this.hargaProduk});
 
   factory Produk.fromJson(Map<String, dynamic> obj) {
     return Produk(

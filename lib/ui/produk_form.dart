@@ -9,6 +9,7 @@ class ProdukForm extends StatefulWidget {
   ProdukForm({required this.produk});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ProdukFormState createState() => _ProdukFormState();
 }
 
@@ -24,6 +25,7 @@ class _ProdukFormState extends State<ProdukForm> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     isUpdate();
@@ -120,8 +122,10 @@ class _ProdukFormState extends State<ProdukForm> {
           var validate = _formKey.currentState!.validate();
           if (validate) {
             if (!_isLoading) {
+              // ignore: unnecessary_null_comparison
               if (widget.produk != null) {
                 //kondisi update produk
+                ubah();
               } else {
                 //kondisi tambah produk
                 simpan();
