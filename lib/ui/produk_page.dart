@@ -4,6 +4,7 @@ import 'package:tokokita/bloc/produk_bloc.dart';
 import 'package:tokokita/model/produk.dart';
 import 'package:tokokita/ui/login_page.dart';
 import 'package:tokokita/ui/produk_detail.dart';
+import 'package:tokokita/ui/produk_form.dart';
 
 class ProdukPage extends StatefulWidget {
   const ProdukPage({Key? key}) : super(key: key);
@@ -24,10 +25,8 @@ class _ProdukPageState extends State<ProdukPage> {
               child: GestureDetector(
                 child: const Icon(Icons.add, size: 26.0),
                 onTap: () async {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProdukPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProdukForm()));
                 },
               ))
         ],

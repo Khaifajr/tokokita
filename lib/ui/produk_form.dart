@@ -5,8 +5,9 @@ import 'package:tokokita/ui/produk_page.dart';
 import 'package:tokokita/widget/warning_dialog.dart';
 
 class ProdukForm extends StatefulWidget {
-  Produk produk;
-  ProdukForm({required this.produk});
+  Produk? produk;
+
+  ProdukForm({Key? key, this.produk}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -36,10 +37,10 @@ class _ProdukFormState extends State<ProdukForm> {
       setState(() {
         judul = "UBAH PRODUK";
         tombolSubmit = "UBAH";
-        _kodeProdukTextboxController.text = widget.produk.kodeProduk!;
-        _namaProdukTextboxController.text = widget.produk.namaProduk!;
+        _kodeProdukTextboxController.text = widget.produk!.kodeProduk!;
+        _namaProdukTextboxController.text = widget.produk!.namaProduk!;
         _hargaProdukTextboxController.text =
-            widget.produk.hargaProduk.toString();
+            widget.produk!.hargaProduk.toString();
       });
     } else {
       judul = "TAMBAH PRODUK";
@@ -164,7 +165,7 @@ class _ProdukFormState extends State<ProdukForm> {
       _isLoading = true;
     });
     Produk updateProduk = new Produk();
-    updateProduk.id = widget.produk.id;
+    updateProduk.id = widget.produk!.id;
     updateProduk.kodeProduk = _kodeProdukTextboxController.text;
     updateProduk.namaProduk = _namaProdukTextboxController.text;
     updateProduk.hargaProduk = int.parse(_hargaProdukTextboxController.text);

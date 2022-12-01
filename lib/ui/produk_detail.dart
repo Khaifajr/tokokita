@@ -7,6 +7,7 @@ import 'package:tokokita/widget/warning_dialog.dart';
 
 class ProdukDetail extends StatefulWidget {
   Produk produk;
+
   ProdukDetail({required this.produk});
 
   @override
