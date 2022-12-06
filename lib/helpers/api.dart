@@ -1,4 +1,5 @@
 import 'dart:io';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 import 'package:tokokita/helpers/user_info.dart';
 import 'app_exception.dart';
@@ -6,8 +7,8 @@ import 'app_exception.dart';
 class Api {
   Future<dynamic> post(String url, dynamic data) async {
     var token = await UserInfo().getToken();
+    // ignore: prefer_typing_uninitialized_variables
     var responseJson;
-    var uri = Uri.parse(url);
     try {
       final response = await http.post(Uri.parse(url),
           body: data,

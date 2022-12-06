@@ -38,6 +38,7 @@ class ProdukBloc {
       "nama_produk": produk.namaProduk,
       "harga": produk.hargaProduk.toString()
     };
+    // ignore: avoid_print
     print("Body : $body");
     var response = await Api().post(apiUrl, body);
     var jsonObj = json.decode(response.body);

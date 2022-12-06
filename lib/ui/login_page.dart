@@ -97,13 +97,15 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       child: Center(
         child: InkWell(
-          child: Text(
+          child: const Text(
             "Registrasi",
             style: TextStyle(color: Colors.blue),
           ),
           onTap: () {
-            Navigator.push(context,
-                new MaterialPageRoute(builder: (context) => RegistrasiPage()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const RegistrasiPage()));
           },
         ),
       ),
